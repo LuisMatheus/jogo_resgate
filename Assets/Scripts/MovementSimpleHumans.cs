@@ -33,15 +33,15 @@ public class MovementSimpleHumans : MonoBehaviour
         // rb.velocity = motion * _speed;
         
         // Rotate right and *-1, because Object has own axis
-        Vector3 verticalMovementation = (transform.right * -1) * Input.GetAxis("Vertical") ;
-        Vector3 horizontalMovimentation = transform.right * Input.GetAxis("Horizontal");
+        Vector3 verticalMovement = (transform.right * -1) * Input.GetAxis("Vertical") ;
+        //Vector3 horizontalMovement = transform.right * Input.GetAxis("Horizontal");
         
         // float slerpTValue = Mathf.Abs(Input.GetAxis("Vertical") / Input.GetAxis("Horizontal"))/2;
-        // Vector3 targetPosition = Vector3.Slerp(horizontalMovimentation, verticalMovimentation, slerpTValue);
+        // Vector3 targetPosition = Vector3.Slerp(horizontalMovementation, verticalMovimentation, slerpTValue);
         // targetPosition.y = 0.0f;
         
         // Move using navMesh
-        _agent.Move(verticalMovementation * _speed * Time.deltaTime);
+        _agent.Move(verticalMovement * _speed * Time.deltaTime);
         
         
         // Normal walk
