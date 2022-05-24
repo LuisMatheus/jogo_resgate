@@ -16,12 +16,13 @@ public class MovementSimpleHumans : MonoBehaviour
     private NavMeshAgent _agent;
     // for switch between walking animations
     private bool _ducked;
+    private bool _running;
  
     void Start()
     {
         // get component from object using the script
         _animator = this.GetComponent<Animator>();
-        _speed = 1;
+        _speed = 2;
         _rb = this.GetComponent<Rigidbody>();
         _agent = this.GetComponent<NavMeshAgent>();
     }
@@ -50,14 +51,33 @@ public class MovementSimpleHumans : MonoBehaviour
             _animator.SetInteger(setLegs, 1);
             _animator.SetInteger(setArms, 1);
         }
+
+        if (Input.GetKey("left shift"))
+        {
+            if (_running)
+            {
+                _running = false;
+                _speed = 2;
+            }
+            else
+            {
+                _running = true;
+                _speed = 4;
+            }
+            
+        }
         
 
         // Running, breaks ducked as well
-        if (Input.GetKey("w") && Input.GetKey("left shift"))
+        if (Input.GetKey("w") && _running)
         {
             _animator.SetInteger(setLegs, 2);
             _animator.SetInteger(setArms, 2);
             _ducked = false;
+            if (_speed < 10)
+            {
+                _speed += 1;
+            }
         }
         
         // Stop walking
@@ -68,7 +88,7 @@ public class MovementSimpleHumans : MonoBehaviour
         }
         
         // Stop Running
-        if (!Input.GetKey("left shift") && Input.GetKey("w"))
+        if (!_running && Input.GetKey("w"))
         {
             _animator.SetInteger(setLegs, 1);
             _animator.SetInteger(setArms, 1);
@@ -113,14 +133,14 @@ public class MovementSimpleHumans : MonoBehaviour
         }
         
         // Walk while ducked
-        if ((Input.GetKey("w") || Input.GetKey("s")) && _ducked)
+        if ((Input.GetKey("w") || Input.GetKey("s")) && _ducked && !_running)
         {
             _animator.SetInteger(setLegs, 6);
             _animator.SetInteger(setArms, 6);
         }
         
         // Stop walking if ducked
-        if ((!Input.GetKey("w") && !Input.GetKey("s")) && _ducked)
+        if ((!Input.GetKey("w") && !Input.GetKey("s")) && _ducked && !_running)
         {
             _animator.SetInteger(setLegs, 8);
             _animator.SetInteger(setArms, 8);
