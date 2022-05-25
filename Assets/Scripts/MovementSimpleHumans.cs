@@ -22,11 +22,7 @@ public class MovementSimpleHumans : MonoBehaviour
     {
         // get component from object using the script
         _animator = this.GetComponent<Animator>();
-<<<<<<< HEAD
-        _speed = 100;
-=======
         _speed = 2;
->>>>>>> master
         _rb = this.GetComponent<Rigidbody>();
         _agent = this.GetComponent<NavMeshAgent>();
     }
