@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 9fa5a510feb733e4ba3a6913bb9d0193
+<<<<<<<< HEAD:Assets/Scripts/SpawnC.cs.meta
+guid: 8cb8d186838770b4f9d4315d79c9615a
+========
+guid: ce7b9e93361426f459b3a5ebbaeaf3d2
+>>>>>>>> master:Assets/Scripts/PathFinder/TacticsMove.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

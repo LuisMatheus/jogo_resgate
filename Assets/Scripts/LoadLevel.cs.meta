@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/SpawnAxe.cs.meta
+guid: e31376c5b8f10e140806eeaffe1e04e8
+========
 guid: 9fa5a510feb733e4ba3a6913bb9d0193
+>>>>>>>> master:Assets/Scripts/LoadLevel.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
