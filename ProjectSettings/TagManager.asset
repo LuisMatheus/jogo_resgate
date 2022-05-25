@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Title
   - LevelCardCanvas
+  - axe
   layers:
   - Default
   - TransparentFX
