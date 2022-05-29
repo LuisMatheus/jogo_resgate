@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/SpawnB.cs.meta
-guid: 4d62e3067396bf640870d7001f6dd4f5
-========
-guid: 388c54b195db0b64fab972cbccbeab6b
->>>>>>>> master:Assets/Scripts/PathFinder/NPCMove.cs.meta
+guid: daa0a23a87cb9fd4b98e92a34092e7b2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
