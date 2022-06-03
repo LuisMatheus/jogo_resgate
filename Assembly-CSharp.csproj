@@ -39,6 +39,7 @@
      <Compile Include="Assets/Scripts/IniciarJogo.cs" />
      <Compile Include="Assets/Scripts/PathFinder/PlayerMove.cs" />
      <Compile Include="Assets/Scripts/PathFinder/TacticsMove.cs" />
+     <Compile Include="Assets/Scripts/PathFinder/PickItem.cs" />
      <Compile Include="Assets/Scripts/PathFinder/NPCMove.cs" />
      <Compile Include="Assets/Scripts/SpawnC.cs" />
      <Compile Include="Assets/Scripts/MovementSimpleHumans.cs" />
@@ -54,7 +55,7 @@
      <Compile Include="Assets/SubAssets/simple modular human/scripts/clothing.cs" />
      <Compile Include="Assets/Scripts/SpawnB.cs" />
      <Compile Include="Assets/Scripts/SpawnAxe.cs" />
-     <Compile Include="Assets/Scripts/PathFinder/PickItem.cs" />
+     <Compile Include="Assets/Scripts/PathFinder/WaterManager.cs" />
      <None Include="Assets/SubAssets/simple modular human/readMe.txt" />
      <None Include="Assets/Downtown Game Studio/Nature Pack - Low Polly Trees &amp; Bushes/Documentation.txt" />
     <Reference Include="UnityEngine">
