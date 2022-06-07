@@ -12,15 +12,25 @@ public class ResgatadoSpawnerScript : MonoBehaviour
     public int quantidade_regatados;
 
     private List<GameObject> resgatados = new List<GameObject>();
-
     private Dictionary<GameObject, int> resgatadoTracker = new Dictionary<GameObject, int>();
+
+    public Vector3[] vertices;
 
     // Start is called before the first frame update
     void Start()
     {
         foreach (GameObject element in quadrantes)
         {
-            resgatadoTracker.Add(element, 0);
+            foreach (Transform child in element.GetComponentsInChildren<Transform>())
+        {
+            if(child.gameObject.activeSelf && !GameObject.ReferenceEquals( element, child.gameObject)){
+                resgatadoTracker.Add(child.gameObject, 0);
+                var meshFilter = child.gameObject.GetComponent<MeshFilter>();
+                var mesh = meshFilter.mesh;
+                vertices = mesh.vertices;
+                Debug.Log(vertices.Length);
+            }
+        }            
         }
     }
 
@@ -51,21 +61,8 @@ public class ResgatadoSpawnerScript : MonoBehaviour
         res.GetComponent<ResgatadoScript>().corda = 1;
 
         res.transform.SetParent(this.transform,false);
-        setPosicao(res,5,7);
-
-    }
-
-    void setPosicao(GameObject resgatado, float x, float z)
-    {
-       UnityEngine.AI.NavMeshHit hit;
-
-        float i = 15;
-
-        while (!UnityEngine.AI.NavMesh.SamplePosition(new Vector3(x,i,z), out hit, 1.0f, UnityEngine.AI.NavMesh.AllAreas))
-        {
-            i = i - 0.5f;
-        }
-        resgatado.transform.position = hit.position + new Vector3(0, resgatado.transform.localScale.y, 0);
+        res.transform.position = vertices[Random.Range(0,vertices.Length-1)];
+        
 
     }
 
