@@ -8,6 +8,7 @@ public class WaterManager : MonoBehaviour
 
     public Text waterTimingDisplay;
     public float waterTiming = 30;
+    public GameOver gameOver;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class WaterManager : MonoBehaviour
         else
         {
             waterTimingDisplay.text = "Fim de jogo!";
+            gameOver.gameOver();
         }
 
 

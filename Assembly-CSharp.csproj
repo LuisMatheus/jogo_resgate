@@ -52,10 +52,12 @@
      <Compile Include="Assets/Scripts/LevelSelector.cs" />
      <Compile Include="Assets/Scripts/PathFinder/Tile.cs" />
      <Compile Include="Assets/Scripts/Follow.cs" />
+     <Compile Include="Assets/Scripts/PathFinder/WaterManager.cs" />
      <Compile Include="Assets/SubAssets/simple modular human/scripts/clothing.cs" />
      <Compile Include="Assets/Scripts/SpawnB.cs" />
      <Compile Include="Assets/Scripts/SpawnAxe.cs" />
-     <Compile Include="Assets/Scripts/PathFinder/WaterManager.cs" />
+     <Compile Include="Assets/Scripts/PathFinder/GlobalTimer.cs" />
+     <Compile Include="Assets/Scripts/PathFinder/GameOver.cs" />
      <None Include="Assets/SubAssets/simple modular human/readMe.txt" />
      <None Include="Assets/Downtown Game Studio/Nature Pack - Low Polly Trees &amp; Bushes/Documentation.txt" />
     <Reference Include="UnityEngine">

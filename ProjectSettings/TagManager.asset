@@ -11,9 +11,10 @@ TagManager:
   - Title
   - LevelCardCanvas
   - axe
-  - bandage
   - saveByAxe
-  - saveByBandage
+  - rope
+  - saveByRope
+  - water
   layers:
   - Default
   - TransparentFX
