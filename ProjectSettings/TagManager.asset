@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - stealingpoint
   - sittingpoint
   - pickuppoint
@@ -15,6 +16,11 @@ TagManager:
   - rope
   - saveByRope
   - water
+=======
+  - Title
+  - LevelCardCanvas
+  - Regatado
+>>>>>>> origin/resgatado
   layers:
   - Default
   - TransparentFX
