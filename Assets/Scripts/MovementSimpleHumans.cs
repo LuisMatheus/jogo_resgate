@@ -41,6 +41,17 @@ public class MovementSimpleHumans : MonoBehaviour
         // Vector3 targetPosition = Vector3.Slerp(horizontalMovementation, verticalMovimentation, slerpTValue);
         // targetPosition.y = 0.0f;
         
+        // Move using navMesh
+        _agent.Move(verticalMovement * _speed * Time.deltaTime);
+        
+        
+        // Normal walk
+        if ((Input.GetKey("w") || Input.GetKey("s")) && !_ducked)
+        { 
+            _animator.SetInteger(setLegs, 1);
+            _animator.SetInteger(setArms, 1);
+        }
+
         if (Input.GetKey("left shift"))
         {
             if (_running)
