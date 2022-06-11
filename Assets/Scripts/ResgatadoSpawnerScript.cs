@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ResgatadoSpawnerScript : MonoBehaviour
@@ -21,16 +22,13 @@ public class ResgatadoSpawnerScript : MonoBehaviour
     {
         foreach (GameObject element in quadrantes)
         {
-            foreach (Transform child in element.GetComponentsInChildren<Transform>())
-        {
-            if(child.gameObject.activeSelf && !GameObject.ReferenceEquals( element, child.gameObject)){
-                resgatadoTracker.Add(child.gameObject, 0);
-                var meshFilter = child.gameObject.GetComponent<MeshFilter>();
+                    
+                resgatadoTracker.Add(element.gameObject, 0);
+                var meshFilter = element.gameObject.GetComponent<MeshFilter>();
                 var mesh = meshFilter.mesh;
                 vertices = mesh.vertices;
-                Debug.Log(vertices.Length);
-            }
-        }            
+            
+                 
         }
     }
 
@@ -38,19 +36,22 @@ public class ResgatadoSpawnerScript : MonoBehaviour
     void Update()
     {
 
-        foreach (var item in resgatadoTracker)
+        for (int i = 0; i < resgatadoTracker.Count; i++)
         {
-            if (item.Value < quantidade_regatados)
+            var item = resgatadoTracker.ElementAt(i);
+             if (item.Value < quantidade_regatados)
             {
-                spawnResgatado();
+
+                spawnResgatado(quadrantes[i]);
                 resgatadoTracker[item.Key] = resgatadoTracker[item.Key] +1;
-            }
+            }      
         }
+      
 
         
     }
 
-    void spawnResgatado()
+    void spawnResgatado(GameObject plane)
     {
         GameObject res = GameObject.Instantiate(resgatado);
 
@@ -61,8 +62,8 @@ public class ResgatadoSpawnerScript : MonoBehaviour
         res.GetComponent<ResgatadoScript>().corda = 1;
 
         res.transform.SetParent(this.transform,false);
-        res.transform.position = vertices[Random.Range(0,vertices.Length-1)];
-        
+        res.transform.position = plane.transform.TransformPoint(vertices[Random.Range(0,vertices.Length-1)]);
+        res.transform.position = res.transform.position + new Vector3(0,1,0);
 
     }
 
