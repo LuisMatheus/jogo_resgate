@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ResgatadoSpawnerScript : MonoBehaviour
 {
@@ -11,24 +13,17 @@ public class ResgatadoSpawnerScript : MonoBehaviour
     public List<GameObject> quadrantes;
 
     public int quantidade_regatados;
+    
+    private Dictionary<GameObject, List<GameObject>> resgatadoTracker = new Dictionary<GameObject, List<GameObject>>();
 
-    private List<GameObject> resgatados = new List<GameObject>();
-    private Dictionary<GameObject, int> resgatadoTracker = new Dictionary<GameObject, int>();
-
-    public Vector3[] vertices;
-
+    private Vector3[] aux;
+    
     // Start is called before the first frame update
     void Start()
     {
         foreach (GameObject element in quadrantes)
         {
-                    
-                resgatadoTracker.Add(element.gameObject, 0);
-                var meshFilter = element.gameObject.GetComponent<MeshFilter>();
-                var mesh = meshFilter.mesh;
-                vertices = mesh.vertices;
-            
-                 
+                resgatadoTracker.Add(element.gameObject, new List<GameObject>());        
         }
     }
 
@@ -39,11 +34,9 @@ public class ResgatadoSpawnerScript : MonoBehaviour
         for (int i = 0; i < resgatadoTracker.Count; i++)
         {
             var item = resgatadoTracker.ElementAt(i);
-             if (item.Value < quantidade_regatados)
+             if (item.Value.Count < quantidade_regatados)
             {
-
-                spawnResgatado(quadrantes[i]);
-                resgatadoTracker[item.Key] = resgatadoTracker[item.Key] +1;
+                item.Value.Add(spawnResgatado(quadrantes[i]));
             }      
         }
       
@@ -51,7 +44,7 @@ public class ResgatadoSpawnerScript : MonoBehaviour
         
     }
 
-    void spawnResgatado(GameObject plane)
+    GameObject spawnResgatado(GameObject plane)
     {
         GameObject res = GameObject.Instantiate(resgatado);
 
@@ -60,11 +53,33 @@ public class ResgatadoSpawnerScript : MonoBehaviour
         res.GetComponent<ResgatadoScript>().machado = 1;
         res.GetComponent<ResgatadoScript>().erva = 1;
         res.GetComponent<ResgatadoScript>().corda = 1;
+        res.GetComponent<ResgatadoScript>().vida = Random.Range(0,99);
 
+        
         res.transform.SetParent(this.transform,false);
-        res.transform.position = plane.transform.TransformPoint(vertices[Random.Range(0,vertices.Length-1)]);
-        res.transform.position = res.transform.position + new Vector3(0,1,0);
+        aux = plane.GetComponent<VerticeCollector>().vertices;
+        res.transform.position = plane.transform.TransformPoint(aux[Random.Range(0,aux.Length-1)]) + new Vector3(0,0.5f,0);
 
+        return res;
     }
 
+    public void removerResgatado(GameObject resgatado)
+    {
+        for (int i = 0; i < resgatadoTracker.Count; i++)
+        {
+            if (resgatadoTracker[quadrantes[i]].Contains(resgatado))
+            {
+                resgatadoTracker[quadrantes[i]].Remove(resgatado);
+                Destroy(resgatado);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("player"))
+        {
+            Debug.Log("FOI!");
+        }
+    }
 }
