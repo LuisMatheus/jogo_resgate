@@ -56,8 +56,11 @@
      <Compile Include="Assets/SubAssets/simple modular human/scripts/clothing.cs" />
      <Compile Include="Assets/Scripts/SpawnB.cs" />
      <Compile Include="Assets/Scripts/SpawnAxe.cs" />
+<<<<<<< Updated upstream
      <Compile Include="Assets/Scripts/PathFinder/GlobalTimer.cs" />
      <Compile Include="Assets/Scripts/PathFinder/GameOver.cs" />
+=======
+>>>>>>> Stashed changes
      <None Include="Assets/SubAssets/simple modular human/readMe.txt" />
      <None Include="Assets/Downtown Game Studio/Nature Pack - Low Polly Trees &amp; Bushes/Documentation.txt" />
     <Reference Include="UnityEngine">
