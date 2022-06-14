@@ -7,12 +7,12 @@ public class WaterManager : MonoBehaviour
 {
 
     public Text waterTimingDisplay;
-    public float waterTiming = 30;
+    public float waterTiming = 15;
     public GameOver gameOver;
 
     void Start()
     {
-        waterTiming = 30;
+        waterTiming = 15;
     }
 
     // Update is called once per frame
@@ -39,7 +39,7 @@ public class WaterManager : MonoBehaviour
     {
         if (col.CompareTag("water") == true)
         {
-            waterTiming = 30;
+            waterTiming = 15;
             Destroy(col.gameObject);
         }
 

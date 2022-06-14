@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Lightmapping = UnityEditor.Lightmapping;
+
 public class GameOver : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -25,7 +25,6 @@ public class GameOver : MonoBehaviour
     public void startGame()
     {
         SceneManager.LoadScene("SampleScene");
-        Lightmapping.Bake();
     }
 
 
