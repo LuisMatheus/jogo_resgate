@@ -4,23 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
-  - Title
-  - LevelCardCanvas
-  - Regatado
-=======
-  - stealingpoint
-  - sittingpoint
-  - pickuppoint
-  - waypoint
-  - Title
-  - LevelCardCanvas
   - axe
   - saveByAxe
   - rope
   - saveByRope
+  - Title
   - water
->>>>>>> water2
+  - LevelCardCanvas
+  - Regatado
+  - telaResgate
   layers:
   - Default
   - TransparentFX

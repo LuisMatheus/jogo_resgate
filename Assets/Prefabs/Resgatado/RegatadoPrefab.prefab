@@ -93,7 +93,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650530718568540007}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.6
   m_Height: 2
@@ -4894,6 +4894,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4548233726961512468}
   - component: {fileID: -8305230110650329572}
+  - component: {fileID: 2137941218346619770}
   m_Layer: 0
   m_Name: RegatadoPrefab
   m_TagString: Regatado
@@ -4934,3 +4935,17 @@ MonoBehaviour:
   agua: 0
   vida: 0
   cor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 0}
+  telaResgate: {fileID: 0}
+--- !u!65 &2137941218346619770
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900552607313500446}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5, z: 5}
+  m_Center: {x: 0, y: 0, z: 0}

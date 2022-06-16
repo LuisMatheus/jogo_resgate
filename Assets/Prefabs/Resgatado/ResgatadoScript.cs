@@ -16,9 +16,14 @@ public class ResgatadoScript : MonoBehaviour
     
     
     public Color cor;
+
+    public GameObject telaResgate;
     
     private void Start()
     {
+        telaResgate = GameObject.Find("telaResgate");
+        telaResgate.SetActive(false);
+        
         cor = new Color(
             Random.Range(0f, 1f), 
             Random.Range(0f, 1f), 
@@ -44,5 +49,21 @@ public class ResgatadoScript : MonoBehaviour
         this.corda = corda;
         this.agua = agua;
         this.vida = vida;
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if(collider.CompareTag("Player")){
+            telaResgate.SetActive(true);
+        }
+        
+    }
+
+    private void OnTriggerExit(Collider collider)
+    {
+        if(collider.CompareTag("Player")){
+            telaResgate.SetActive(false);
+        }
+        
     }
 }
