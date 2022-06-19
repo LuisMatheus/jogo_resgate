@@ -38,6 +38,8 @@
   <ItemGroup>
      <Compile Include="Assets/Scripts/IniciarJogo.cs" />
      <Compile Include="Assets/Scripts/GlobalTimer.cs" />
+     <Compile Include="Assets/Scripts/VerticeCollector.cs" />
+     <Compile Include="Assets/Scripts/PlayerInventario.cs" />
      <Compile Include="Assets/Scripts/PathFinder/PickItem.cs" />
      <Compile Include="Assets/Scripts/SpawnC.cs" />
      <Compile Include="Assets/Scripts/MovementSimpleHumans.cs" />
@@ -49,15 +51,27 @@
      <Compile Include="Assets/Scripts/NewBehaviourScript.cs" />
      <Compile Include="Assets/Scripts/LevelSelector.cs" />
      <Compile Include="Assets/Scripts/Follow.cs" />
+     <Compile Include="Assets/Scripts/ResgatadoSpawnerScript.cs" />
      <Compile Include="Assets/Scripts/WaterManager.cs" />
      <Compile Include="Assets/SubAssets/simple modular human/scripts/clothing.cs" />
      <Compile Include="Assets/Scripts/GameOver.cs" />
      <Compile Include="Assets/Scripts/SpawnB.cs" />
      <Compile Include="Assets/Scripts/SpawnAxe.cs" />
-     <Compile Include="Assets/Scripts/VerticeCollector.cs" />
      <Compile Include="Assets/Prefabs/Resgatado/ResgatadoScript.cs" />
-     <Compile Include="Assets/Scripts/ResgatadoSpawnerScript.cs" />
-     <Compile Include="Assets/Scripts/PlayerInventario.cs" />
+     <Compile Include="Assets/Scripts/Marks.cs" />
+     <Compile Include="Assets/Scripts/Compass.cs" />
+     <Compile Include="Assets/Scripts/CompassEnable.cs" />
+     <Compile Include="Assets/SubAssets/Accessible Audio Toolkit/Scripts/LineSubtitle.cs" />
+     <Compile Include="Assets/SubAssets/Accessible Audio Toolkit/Scripts/AATManager.cs" />
+     <Compile Include="Assets/SubAssets/Accessible Audio Toolkit/Scripts/SubtitleDialogue.cs" />
+     <Compile Include="Assets/SubAssets/Accessible Audio Toolkit/Scripts/AATSource.cs" />
+     <Compile Include="Assets/SubAssets/Accessible Audio Toolkit/Scripts/Wireframe.cs" />
+     <Compile Include="Assets/SubAssets/Accessible Audio Toolkit/Scripts/Subtitle.cs" />
+     <Compile Include="Assets/SubAssets/Accessible Audio Toolkit/Scripts/FP_Camera.cs" />
+     <Compile Include="Assets/SubAssets/Accessible Audio Toolkit/Scripts/TestSceneSubtitle.cs" />
+     <Compile Include="Assets/SubAssets/Accessible Audio Toolkit/Scripts/ControlSoundsScene.cs" />
+     <Compile Include="Assets/SubAssets/Accessible Audio Toolkit/Scripts/EventsSubtitles.cs" />
+     <Compile Include="Assets/Scripts/MainMenu.cs" />
      <None Include="Assets/SubAssets/simple modular human/readMe.txt" />
      <None Include="Assets/Downtown Game Studio/Nature Pack - Low Polly Trees &amp; Bushes/Documentation.txt" />
     <Reference Include="UnityEngine">
@@ -646,6 +660,10 @@
       <Project>{87c03e24-876d-4d7b-4757-2351c3bddee7}</Project>
       <Name>Unity.VisualStudio.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Sysroot.Linux_x86_64.csproj">
+      <Project>{017921dd-dfda-9b0a-0a62-70ec314fcc6a}</Project>
+      <Name>Unity.Sysroot.Linux_x86_64</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Timeline.Editor.csproj">
       <Project>{b858d32d-02a5-1157-74ce-4f35d0042a21}</Project>
       <Name>Unity.Timeline.Editor</Name>
@@ -657,6 +675,10 @@
     <ProjectReference Include="Unity.TextMeshPro.csproj">
       <Project>{96290a33-d9db-2d62-6765-b8f73f396d4a}</Project>
       <Name>Unity.TextMeshPro</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Toolchain.Linux-x86_64.csproj">
+      <Project>{ab27065c-f61d-4696-6f93-48c5f51d1b74}</Project>
+      <Name>Unity.Toolchain.Linux-x86_64</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{4a224031-8f71-9327-74f6-24a129f5d272}</Project>
@@ -673,14 +695,6 @@
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{8494e00b-64f4-6491-9c6c-7beff839f792}</Project>
       <Name>UnityEngine.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Sysroot.Linux_x86_64.csproj">
-      <Project>{017921dd-dfda-9b0a-0a62-70ec314fcc6a}</Project>
-      <Name>Unity.Sysroot.Linux_x86_64</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Toolchain.Linux-x86_64.csproj">
-      <Project>{ab27065c-f61d-4696-6f93-48c5f51d1b74}</Project>
-      <Name>Unity.Toolchain.Linux-x86_64</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.SysrootPackage.Editor.csproj">
       <Project>{18f1f93f-c148-9ee4-0814-571c84de2c52}</Project>

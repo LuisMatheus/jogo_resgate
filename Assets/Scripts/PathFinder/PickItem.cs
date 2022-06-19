@@ -11,12 +11,16 @@ public class PickItem : MonoBehaviour
     public int score;
     public int axeCount;
     public int ropeCount;
+    public int ervaCount;
+    public int aguaCount;
 
     void Start()
     {
         score = 0;
-        axeCount = 0;
-        ropeCount = 0;
+        axeCount = 30;
+        ropeCount = 30;
+        ervaCount = 30;
+        aguaCount = 30;
     }
 
     // Update is called once per frame
@@ -30,6 +34,24 @@ public class PickItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
+
+        if (col.CompareTag("Regatado") == true)
+        {
+            var resgatado = col.gameObject.GetComponent<ResgatadoScript>();
+
+            if (resgatado.agua <= aguaCount && resgatado.corda <= ropeCount && resgatado.erva <= ervaCount && resgatado.machado <= axeCount)
+            {
+                aguaCount = aguaCount - resgatado.agua;
+                ropeCount = ropeCount - resgatado.corda;
+                ervaCount = ervaCount - resgatado.erva;
+                axeCount = axeCount - resgatado.machado;
+                Destroy(col.gameObject);
+                score = score + 1;
+
+            }
+        }
+
+
         if (col.CompareTag("axe") == true)
         {
             axeCount = axeCount + 1;
@@ -39,20 +61,6 @@ public class PickItem : MonoBehaviour
         if (col.CompareTag("rope") == true)
         {
             ropeCount = ropeCount + 1;
-            Destroy(col.gameObject);
-        }
-
-        if (col.CompareTag("saveByRope") == true && ropeCount > 0)
-        {
-            score = score + 1;
-            ropeCount = ropeCount - 1;
-            Destroy(col.gameObject);
-        }
-
-        if (col.CompareTag("saveByAxe") == true && axeCount > 0)
-        {
-            score = score + 1;
-            axeCount = axeCount - 1;
             Destroy(col.gameObject);
         }
 
