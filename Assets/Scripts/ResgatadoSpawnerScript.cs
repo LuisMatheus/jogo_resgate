@@ -12,11 +12,17 @@ public class ResgatadoSpawnerScript : MonoBehaviour
 
     public List<GameObject> quadrantes;
 
-    public int quantidade_regatados;
+    public int quantidadeRegatados;
     
     private Dictionary<GameObject, List<GameObject>> resgatadoTracker = new Dictionary<GameObject, List<GameObject>>();
 
     private Vector3[] aux;
+
+    public int updateLevel = 4;
+
+    public int offSetTempoVida = 1;
+    
+    private int resgatadosNum = 1;
     
     // Start is called before the first frame update
     void Start()
@@ -34,7 +40,7 @@ public class ResgatadoSpawnerScript : MonoBehaviour
         for (int i = 0; i < resgatadoTracker.Count; i++)
         {
             var item = resgatadoTracker.ElementAt(i);
-             if (item.Value.Count < quantidade_regatados)
+             if (item.Value.Count < quantidadeRegatados)
             {
                 item.Value.Add(spawnResgatado(quadrantes[i]));
             }      
@@ -49,12 +55,13 @@ public class ResgatadoSpawnerScript : MonoBehaviour
         GameObject res = GameObject.Instantiate(resgatado);
 
         //Seta os itens
-        res.GetComponent<ResgatadoScript>().agua = 1;
-        res.GetComponent<ResgatadoScript>().machado = 1;
-        res.GetComponent<ResgatadoScript>().erva = 1;
-        res.GetComponent<ResgatadoScript>().corda = 1;
-        res.GetComponent<ResgatadoScript>().vida = Random.Range(0,99);
+        res.GetComponent<ResgatadoScript>().agua = quantidadeItensSpawn();
+        res.GetComponent<ResgatadoScript>().machado = quantidadeItensSpawn();
+        res.GetComponent<ResgatadoScript>().erva = quantidadeItensSpawn();
+        res.GetComponent<ResgatadoScript>().corda = quantidadeItensSpawn();
+        res.GetComponent<ResgatadoScript>().vida = vidaSpawn();
 
+        updateQuantidadeResgatados();
         
         res.transform.SetParent(this.transform,false);
         aux = plane.GetComponent<VerticeCollector>().vertices;
@@ -63,23 +70,42 @@ public class ResgatadoSpawnerScript : MonoBehaviour
         return res;
     }
 
+    private float vidaSpawn()
+    {
+        return 90 / (resgatadosNum * offSetTempoVida);
+    }
+
+    private void updateQuantidadeResgatados()
+    {
+        var x = resgatadosNum % updateLevel;
+        quantidadeRegatados = x == 0 ? 1 : x;
+    }
+
     public void removerResgatado(GameObject resgatado)
     {
         for (int i = 0; i < resgatadoTracker.Count; i++)
         {
             if (resgatadoTracker[quadrantes[i]].Contains(resgatado))
             {
+                resgatadosNum++;
                 resgatadoTracker[quadrantes[i]].Remove(resgatado);
                 Destroy(resgatado);
             }
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private int quantidadeItensSpawn()
     {
-        if (other.tag.Equals("player"))
+        int num = 0;
+
+        for (int i = 0; i < resgatadosNum; i++)
         {
-            Debug.Log("FOI!");
+            if (Random.Range(1, 2) % 2 == 0)
+            {
+                num++;
+            }
         }
+        
+        return num == 0 ? 1 : num;
     }
 }
