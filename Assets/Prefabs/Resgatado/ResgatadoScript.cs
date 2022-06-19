@@ -8,10 +8,10 @@ using Random = UnityEngine.Random;
 public class ResgatadoScript : MonoBehaviour
 {
 
-    public int machado = 0;
-    public int erva = 0;
-    public int corda = 0;
-    public int agua = 0;
+    public int machado = Random.Range(0, 1);
+    public int erva = Random.Range(0, 1);
+    public int corda = Random.Range(0, 1);
+    public int agua = Random.Range(0, 1);
     public float vida = 0;
     
     

@@ -13,9 +13,17 @@ public class PickItem : MonoBehaviour
     public int ropeCount;
     public int ervaCount;
     public int aguaCount;
+    public GameObject telaResgate;
+
+    public Collider collider;
+
+    public bool podeDestruir = false;
 
     void Start()
     {
+        telaResgate = GameObject.Find("TelaResgate");
+        telaResgate.SetActive(false);
+
         score = 0;
         axeCount = 30;
         ropeCount = 30;
@@ -30,14 +38,25 @@ public class PickItem : MonoBehaviour
         axeDisplay.text = axeCount.ToString();
         ropeDisplay.text = ropeCount.ToString();
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Destroy(collider.gameObject);
+            telaResgate.SetActive(false);
+            score = score + 1;
+        }
     }
 
     private void OnTriggerEnter(Collider col)
     {
+        collider = col;
 
         if (col.CompareTag("Regatado") == true)
         {
+            telaResgate.SetActive(true);
+
             var resgatado = col.gameObject.GetComponent<ResgatadoScript>();
+
+            Debug.Log("Agua " + resgatado.agua + " Corda " + resgatado.corda + " Erva " + resgatado.erva + " Machado " + resgatado.machado);
 
             if (resgatado.agua <= aguaCount && resgatado.corda <= ropeCount && resgatado.erva <= ervaCount && resgatado.machado <= axeCount)
             {
@@ -45,8 +64,7 @@ public class PickItem : MonoBehaviour
                 ropeCount = ropeCount - resgatado.corda;
                 ervaCount = ervaCount - resgatado.erva;
                 axeCount = axeCount - resgatado.machado;
-                Destroy(col.gameObject);
-                score = score + 1;
+                podeDestruir = true;
 
             }
         }
@@ -64,6 +82,15 @@ public class PickItem : MonoBehaviour
             Destroy(col.gameObject);
         }
 
+
+    }
+
+    private void OnTriggerExit(Collider col)
+    {
+        if (col.CompareTag("Regatado"))
+        {
+            telaResgate.SetActive(false);
+        }
 
     }
 
