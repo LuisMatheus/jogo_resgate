@@ -7,8 +7,8 @@ public class MovementSimpleHumans : MonoBehaviour
 {
     private Animator _animator;
     // Get legs and arms parameters from animator to vars
-    private int setLegs = Animator.StringToHash("legs");
-    private int setArms = Animator.StringToHash("arms");
+    public int setLegs = Animator.StringToHash("legs");
+    public int setArms = Animator.StringToHash("arms");
     // set speed of gameObject
     private int _speed;
     private Rigidbody _rb;
@@ -34,24 +34,13 @@ public class MovementSimpleHumans : MonoBehaviour
         // rb.velocity = motion * _speed;
         
         // Rotate right and *-1, because Object has own axis
-        Vector3 verticalMovement = (transform.right * -1) * Input.GetAxis("Vertical") ;
+        Vector3 verticalMovement = transform.right * (-1 * Input.GetAxis("Vertical")) ;
         //Vector3 horizontalMovement = transform.right * Input.GetAxis("Horizontal");
         
         // float slerpTValue = Mathf.Abs(Input.GetAxis("Vertical") / Input.GetAxis("Horizontal"))/2;
         // Vector3 targetPosition = Vector3.Slerp(horizontalMovementation, verticalMovimentation, slerpTValue);
         // targetPosition.y = 0.0f;
         
-        // Move using navMesh
-        _agent.Move(verticalMovement * _speed * Time.deltaTime);
-        
-        
-        // Normal walk
-        if ((Input.GetKey("w") || Input.GetKey("s")) && !_ducked)
-        { 
-            _animator.SetInteger(setLegs, 1);
-            _animator.SetInteger(setArms, 1);
-        }
-
         if (Input.GetKey("left shift"))
         {
             if (_running)
@@ -67,6 +56,16 @@ public class MovementSimpleHumans : MonoBehaviour
             
         }
         
+        // Move using navMesh
+        _agent.Move(verticalMovement * (_speed * Time.deltaTime));
+        
+        
+        // Normal walk
+        if ((Input.GetKey("w") || Input.GetKey("s")) && !_ducked)
+        { 
+            _animator.SetInteger(setLegs, 1);
+            _animator.SetInteger(setArms, 1);
+        }
 
         // Running, breaks ducked as well
         if (Input.GetKey("w") && _running)
@@ -105,7 +104,7 @@ public class MovementSimpleHumans : MonoBehaviour
         if (Input.GetKey("d"))
         {
             double rotate = transform.localRotation.eulerAngles.y;
-            transform.localRotation = Quaternion.Euler(new Vector3(0, (float) rotate+1, 0));
+            transform.localRotation = Quaternion.Euler(new Vector3(0, (float) rotate+1f, 0));
         }
         
         // Pick-up
