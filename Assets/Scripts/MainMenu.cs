@@ -11,8 +11,9 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene(0);
-        SceneManager.UnloadSceneAsync(2);
+        SceneManager.LoadScene("SampleScene");
+        var i = SceneManager.GetActiveScene();
+        SceneManager.UnloadSceneAsync(i);
     }
 
     public void QuitGame()

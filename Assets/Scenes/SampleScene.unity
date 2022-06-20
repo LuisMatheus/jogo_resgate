@@ -3759,7 +3759,7 @@ MonoBehaviour:
   - {fileID: 661814504}
   - {fileID: 1766382566}
   - {fileID: 540004433}
-  quantidadeRegatados: 0
+  quantidadeRegatados: 4
   updateLevel: 4
   offSetTempoVida: 1
 --- !u!4 &684403151
