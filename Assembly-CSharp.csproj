@@ -68,7 +68,6 @@
      <Compile Include="Assets\Scripts\Movement.cs" />
      <Compile Include="Assets\SubAssets\Accessible Audio Toolkit\Scripts\TestSceneSubtitle.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
-     <Compile Include="Assets\Scripts\Interactable.cs" />
      <Compile Include="Assets\SubAssets\Accessible Audio Toolkit\Scripts\FP_Camera.cs" />
      <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
      <Compile Include="Assets\SubAssets\Accessible Audio Toolkit\Scripts\SubtitleDialogue.cs" />
