@@ -12,6 +12,7 @@ TagManager:
   - rope
   - herb
   - knife
+  - water
   layers:
   - Default
   - TransparentFX
