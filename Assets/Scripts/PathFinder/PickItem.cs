@@ -12,13 +12,13 @@ public class PickItem : MonoBehaviour
     public int axeCount;
     public int ropeCount;
     public int ervaCount;
-    public int aguaCount;
+    public int knifeCount;
 
-    public int aguaNeed;
+    public int knifeNeed;
     public int ropeNeed;
     public int ervaNeed;
     public int axeNeed;
-    public Text aguaNeedDisplay;   
+    public Text knifeNeedDisplay;   
     public GameObject telaResgate;
 
     public Collider collider;
@@ -29,10 +29,10 @@ public class PickItem : MonoBehaviour
         telaResgate.SetActive(false);
 
         score = 0;
-        axeCount = 30;
-        ropeCount = 30;
-        ervaCount = 30;
-        aguaCount = 30;
+        axeCount = 0;
+        ropeCount = 0;
+        ervaCount = 0;
+        knifeCount = 0;
     }
 
     // Update is called once per frame
@@ -41,23 +41,22 @@ public class PickItem : MonoBehaviour
         scoreDisplay.text = score.ToString();
         axeDisplay.text = axeCount.ToString();
         ropeDisplay.text = ropeCount.ToString();
-        aguaNeedDisplay.text = aguaNeed.ToString();        
-        if (Input.GetKeyDown(KeyCode.E) && collider)
+     var resgatado = collider.gameObject.GetComponent<ResgatadoScript>();
+        if (Input.GetKeyDown(KeyCode.E) && collider && resgatado.knife <= knifeCount && resgatado.corda <= ropeCount && resgatado.erva <= ervaCount && resgatado.machado <= axeCount)
         {
-            Destroy(collider.gameObject);
+            //Destroy(collider.gameObject);
             telaResgate.SetActive(false);
             score = score + 1;
-            var resgatado = collider.gameObject.GetComponent<ResgatadoScript>();
+            
 
-            Debug.Log("Agua " + resgatado.agua + " Corda " + resgatado.corda + " Erva " + resgatado.erva + " Machado " + resgatado.machado);
+            Debug.Log("knife " + resgatado.knife + " Corda " + resgatado.corda + " Erva " + resgatado.erva + " Machado " + resgatado.machado);
 
-            if (resgatado.agua <= aguaCount && resgatado.corda <= ropeCount && resgatado.erva <= ervaCount && resgatado.machado <= axeCount)
-            {
-                aguaCount = aguaCount - resgatado.agua;
+           
+                knifeCount = knifeCount - resgatado.knife;
                 ropeCount = ropeCount - resgatado.corda;
                 ervaCount = ervaCount - resgatado.erva;
                 axeCount = axeCount - resgatado.machado;
-            }
+            GameObject.Find("ResgatadoSpawner").GetComponent<ResgatadoSpawnerScript>().removerResgatado(resgatado.gameObject,true);
         }
     }
 
@@ -68,7 +67,7 @@ public class PickItem : MonoBehaviour
         {
             collider = col;
             var resgatado = collider.gameObject.GetComponent<ResgatadoScript>();
-           aguaNeed = resgatado.agua;
+           knifeNeed = resgatado.knife;
             ropeNeed = resgatado.corda;
             ervaNeed = resgatado.erva;
             axeNeed = resgatado.machado;
@@ -87,6 +86,18 @@ public class PickItem : MonoBehaviour
         if (col.CompareTag("rope") == true)
         {
             ropeCount = ropeCount + 1;
+            Destroy(col.gameObject);
+        }
+
+          if (col.CompareTag("herb") == true)
+        {
+            ervaCount = ervaCount + 1;
+            Destroy(col.gameObject);
+        }
+
+           if (col.CompareTag("knife") == true)
+        {
+            knifeCount = knifeCount + 1;
             Destroy(col.gameObject);
         }
 

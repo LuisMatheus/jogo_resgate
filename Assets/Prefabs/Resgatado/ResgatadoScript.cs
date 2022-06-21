@@ -11,9 +11,9 @@ public class ResgatadoScript : MonoBehaviour
     public int machado;
     public int erva;
     public int corda;
-    public int agua;
+    public int knife;
     public float vida = 0;
-    
+    public int id;
     
     public Color cor;
     
@@ -27,7 +27,7 @@ public class ResgatadoScript : MonoBehaviour
         machado = Random.Range(0, 2);
         erva = Random.Range(0, 2);
         corda = Random.Range(0, 2);
-        agua = Random.Range(0, 2);
+        knife = Random.Range(0, 2);
 
         ParticleSystem.MainModule psMain = GetComponentInChildren<ParticleSystem>().main;
         psMain.startColor = new ParticleSystem.MinMaxGradient(cor, cor);
@@ -39,15 +39,16 @@ public class ResgatadoScript : MonoBehaviour
         vida -= Time.deltaTime;
         if(vida < 0)
         {
-            this.GetComponentInParent<ResgatadoSpawnerScript>().removerResgatado(this.gameObject);
+            GetComponentInParent<ResgatadoSpawnerScript>().removerResgatado(this.gameObject,false);
         }
     }
 
-    void Setup(int machado,int erva, int corda, int agua,float vida){
+    void Setup(int machado,int erva, int corda, int knife,float vida ,int id){
         this.machado = machado;
         this.erva = erva;
         this.corda = corda;
-        this.agua = agua;
+        this.knife = knife;
         this.vida = vida;
+          this.id = id;
     }
 }
