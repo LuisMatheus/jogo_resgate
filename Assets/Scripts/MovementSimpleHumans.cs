@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class MovementSimpleHumans : MonoBehaviour
 {
@@ -17,6 +19,13 @@ public class MovementSimpleHumans : MonoBehaviour
     // for switch between walking animations
     private bool _ducked;
     private bool _running;
+    public Text axe;
+    public Text rope;
+    public Text drug;
+    
+    private int axeValue; 
+    private int ropeValue;
+    private int drugValue;
  
     void Start()
     {
@@ -25,6 +34,9 @@ public class MovementSimpleHumans : MonoBehaviour
         _speed = 2;
         _rb = this.GetComponent<Rigidbody>();
         _agent = this.GetComponent<NavMeshAgent>();
+
+        
+
     }
 
     // Update is called once per frame
@@ -32,6 +44,14 @@ public class MovementSimpleHumans : MonoBehaviour
     {
         // motion = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         // rb.velocity = motion * _speed;
+        
+        axeValue = int.Parse(axe.text);
+        ropeValue = int.Parse(rope.text);
+        drugValue = int.Parse(drug.text);
+        // peso
+        var weight = axeValue + ropeValue + drugValue;
+        
+        Debug.Log($"{weight}");
         
         // Rotate right and *-1, because Object has own axis
         Vector3 verticalMovement = transform.right * (-1 * Input.GetAxis("Vertical")) ;
@@ -73,9 +93,30 @@ public class MovementSimpleHumans : MonoBehaviour
             _animator.SetInteger(setLegs, 2);
             _animator.SetInteger(setArms, 2);
             _ducked = false;
-            if (_speed < 10)
+            if (_speed < 10 && weight < 10)
             {
                 _speed += 1;
+            }
+            else
+            {
+                if (_speed < 8 && weight < 15)
+                {
+                    _speed += 1;
+                }
+                else
+                {
+                    if (_speed < 5 && weight < 20)
+                    {
+                        _speed += 1;
+                    }
+                    else
+                    {
+                        if (_speed < 3 && weight < 30)
+                        {
+                            _speed += 1;
+                        }
+                    }
+                }
             }
         }
         
@@ -146,4 +187,7 @@ public class MovementSimpleHumans : MonoBehaviour
         }
         
     }
+    
+    
+    
 }
