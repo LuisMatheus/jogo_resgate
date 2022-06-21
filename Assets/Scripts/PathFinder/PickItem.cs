@@ -8,6 +8,10 @@ public class PickItem : MonoBehaviour
     public Text scoreDisplay;
     public Text axeDisplay;
     public Text ropeDisplay;
+
+
+    public Text ervaDisplay;
+
     public int score;
     public int axeCount;
     public int ropeCount;
@@ -47,6 +51,7 @@ public class PickItem : MonoBehaviour
         scoreDisplay.text = score.ToString();
         axeDisplay.text = axeCount.ToString();
         ropeDisplay.text = ropeCount.ToString();
+        ervaDisplay.text = ervaCount.ToString();
 
         ervaNeedDisplay.text = "Erva(s): " + ervaNeed.ToString();
         ropeNeedDisplay.text = "Corda(s): " + ropeNeed.ToString();

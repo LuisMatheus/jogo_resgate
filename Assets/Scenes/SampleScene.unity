@@ -5213,6 +5213,7 @@ MonoBehaviour:
   scoreDisplay: {fileID: 1646536506}
   axeDisplay: {fileID: 621753500}
   ropeDisplay: {fileID: 423368855}
+  ervaDisplay: {fileID: 1883594296}
   score: 0
   axeCount: 0
   ropeCount: 0
