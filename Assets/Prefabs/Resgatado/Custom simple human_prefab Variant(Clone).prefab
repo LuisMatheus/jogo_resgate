@@ -6283,6 +6283,7 @@ GameObject:
   - component: {fileID: 627317611258565896}
   - component: {fileID: 5899687742377729770}
   - component: {fileID: 5174531875757423927}
+  - component: {fileID: -1338679234168093833}
   m_Layer: 0
   m_Name: Custom simple human_prefab Variant(Clone)
   m_TagString: Regatado
@@ -11110,6 +11111,25 @@ MonoBehaviour:
   vida: 21.18314
   id: 0
   cor: {r: 0.8219788, g: 0.6219066, b: 0.23593736, a: 1}
+--- !u!95 &-1338679234168093833
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8334387668722997900}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: d83e07c47cb17454bbddbc5dd7574150, type: 3}
+  m_Controller: {fileID: 9100000, guid: 64d78995d526da546a4d58f9211e5156, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8416508748053115405
 GameObject:
   m_ObjectHideFlags: 0
