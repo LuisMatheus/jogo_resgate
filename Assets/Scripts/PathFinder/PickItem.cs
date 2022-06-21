@@ -12,7 +12,7 @@ public class PickItem : MonoBehaviour
 
     public Text ervaDisplay;
 
-    public int score = 0;
+    public static int score = 0;
     public int axeCount;
     public int ropeCount;
     public int ervaCount;

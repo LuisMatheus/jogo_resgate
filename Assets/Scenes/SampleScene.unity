@@ -6042,7 +6042,6 @@ MonoBehaviour:
   ropeDisplay: {fileID: 423368855}
   knifeDisplay: {fileID: 514730391}
   ervaDisplay: {fileID: 1883594296}
-  score: 0
   axeCount: 0
   ropeCount: 0
   ervaCount: 0
@@ -9674,6 +9673,14 @@ PrefabInstance:
       value: 4.170354
       objectReference: {fileID: 0}
     - target: {fileID: 4796207811998135863, guid: d6112008cba14c147b799fa5f0944f3d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819591907042023763, guid: d6112008cba14c147b799fa5f0944f3d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4980700958441605304, guid: d6112008cba14c147b799fa5f0944f3d, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
