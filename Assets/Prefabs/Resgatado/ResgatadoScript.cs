@@ -29,6 +29,11 @@ public class ResgatadoScript : MonoBehaviour
         corda = Random.Range(0, 2);
         knife = Random.Range(0, 2);
 
+        if (machado + erva + corda + knife == 0)
+        {
+            erva = 1;
+        }
+
         ParticleSystem.MainModule psMain = GetComponentInChildren<ParticleSystem>().main;
         psMain.startColor = new ParticleSystem.MinMaxGradient(cor, cor);
     }

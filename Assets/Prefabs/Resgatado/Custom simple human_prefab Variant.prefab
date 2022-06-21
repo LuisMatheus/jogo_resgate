@@ -4874,6 +4874,7 @@ MonoBehaviour:
   machado: 0
   erva: 0
   corda: 0
-  agua: 0
+  knife: 0
   vida: 0
+  id: 0
   cor: {r: 0, g: 0, b: 0, a: 0}

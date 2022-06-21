@@ -8,7 +8,7 @@ public class PickItem : MonoBehaviour
     public Text scoreDisplay;
     public Text axeDisplay;
     public Text ropeDisplay;
-
+    public Text knifeDisplay;
 
     public Text ervaDisplay;
 
@@ -32,7 +32,6 @@ public class PickItem : MonoBehaviour
 
     public Collider collider;
 
-
     void Start()
     {
         telaResgate = GameObject.Find("TelaResgate");
@@ -52,11 +51,17 @@ public class PickItem : MonoBehaviour
         axeDisplay.text = axeCount.ToString();
         ropeDisplay.text = ropeCount.ToString();
         ervaDisplay.text = ervaCount.ToString();
+        knifeDisplay.text = knifeCount.ToString();
 
         ervaNeedDisplay.text = "Erva(s): " + ervaNeed.ToString();
         ropeNeedDisplay.text = "Corda(s): " + ropeNeed.ToString();
         axeNeedDisplay.text = "Machado(s): " + axeNeed.ToString();
         knifeNeedDisplay.text = "Faca(s): " + knifeNeed.ToString();
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            telaResgate.SetActive(false);
+        }
 
         if (collider)
         {
@@ -66,7 +71,7 @@ public class PickItem : MonoBehaviour
 
                 //Destroy(collider.gameObject);
                 telaResgate.SetActive(false);
-                score = score + 1;
+                score = score + resgatado.knife + resgatado.corda + resgatado.erva + resgatado.machado;
 
                 knifeCount = knifeCount - resgatado.knife;
                 ropeCount = ropeCount - resgatado.corda;
@@ -137,11 +142,11 @@ public class PickItem : MonoBehaviour
 
     private void OnTriggerExit(Collider col)
     {
+
+
         if (col.CompareTag("Regatado") == true)
         {
             collider = null;
-            telaResgate.SetActive(false);
-
         }
 
     }
