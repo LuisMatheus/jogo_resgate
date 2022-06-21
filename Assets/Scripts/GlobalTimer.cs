@@ -8,7 +8,7 @@ public class GlobalTimer : MonoBehaviour
 {
 
     public Text timeToFinishDisplay;
-    public float timeToFinish = 60 * 10; // 10 Minutes
+    public float timeToFinish = 60 * 5; // 5 Minutes
     public GameOver gameOver;
 
 
