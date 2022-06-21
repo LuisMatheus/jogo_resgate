@@ -13,7 +13,8 @@ public class ResgatadoScript : MonoBehaviour
     public int corda;
     public int agua;
     public float vida = 0;
-    
+
+    public int id;
     
     public Color cor;
     
@@ -39,15 +40,16 @@ public class ResgatadoScript : MonoBehaviour
         vida -= Time.deltaTime;
         if(vida < 0)
         {
-            this.GetComponentInParent<ResgatadoSpawnerScript>().removerResgatado(this.gameObject);
+            GetComponentInParent<ResgatadoSpawnerScript>().removerResgatado(this.gameObject,false);
         }
     }
 
-    void Setup(int machado,int erva, int corda, int agua,float vida){
+    void Setup(int machado,int erva, int corda, int agua,float vida,int id){
         this.machado = machado;
         this.erva = erva;
         this.corda = corda;
         this.agua = agua;
         this.vida = vida;
+        this.id = id;
     }
 }
