@@ -24,10 +24,10 @@ public class ResgatadoScript : MonoBehaviour
             Random.Range(0f, 1f), 
             Random.Range(0f, 1f));
 
-        machado = Random.Range(0, 1);
-        erva = Random.Range(0, 1);
-        corda = Random.Range(0, 1);
-        agua = Random.Range(0, 1);
+        machado = Random.Range(0, 2);
+        erva = Random.Range(0, 2);
+        corda = Random.Range(0, 2);
+        agua = Random.Range(0, 2);
 
         ParticleSystem.MainModule psMain = GetComponentInChildren<ParticleSystem>().main;
         psMain.startColor = new ParticleSystem.MinMaxGradient(cor, cor);

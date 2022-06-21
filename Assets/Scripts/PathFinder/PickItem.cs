@@ -13,11 +13,15 @@ public class PickItem : MonoBehaviour
     public int ropeCount;
     public int ervaCount;
     public int aguaCount;
+
+    public int aguaNeed;
+    public int ropeNeed;
+    public int ervaNeed;
+    public int axeNeed;
+    public Text aguaNeedDisplay;   
     public GameObject telaResgate;
 
     public Collider collider;
-
-    public bool podeDestruir = false;
 
     void Start()
     {
@@ -37,24 +41,13 @@ public class PickItem : MonoBehaviour
         scoreDisplay.text = score.ToString();
         axeDisplay.text = axeCount.ToString();
         ropeDisplay.text = ropeCount.ToString();
-
-        if (Input.GetKeyDown(KeyCode.E))
+        aguaNeedDisplay.text = aguaNeed.ToString();        
+        if (Input.GetKeyDown(KeyCode.E) && collider)
         {
             Destroy(collider.gameObject);
             telaResgate.SetActive(false);
             score = score + 1;
-        }
-    }
-
-    private void OnTriggerEnter(Collider col)
-    {
-        collider = col;
-
-        if (col.CompareTag("Regatado") == true)
-        {
-            telaResgate.SetActive(true);
-
-            var resgatado = col.gameObject.GetComponent<ResgatadoScript>();
+            var resgatado = collider.gameObject.GetComponent<ResgatadoScript>();
 
             Debug.Log("Agua " + resgatado.agua + " Corda " + resgatado.corda + " Erva " + resgatado.erva + " Machado " + resgatado.machado);
 
@@ -64,9 +57,24 @@ public class PickItem : MonoBehaviour
                 ropeCount = ropeCount - resgatado.corda;
                 ervaCount = ervaCount - resgatado.erva;
                 axeCount = axeCount - resgatado.machado;
-                podeDestruir = true;
-
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+    
+        if (col.CompareTag("Regatado") == true)
+        {
+            collider = col;
+            var resgatado = collider.gameObject.GetComponent<ResgatadoScript>();
+           aguaNeed = resgatado.agua;
+            ropeNeed = resgatado.corda;
+            ervaNeed = resgatado.erva;
+            axeNeed = resgatado.machado;
+            telaResgate.SetActive(true);
+
+        
         }
 
 
@@ -89,6 +97,7 @@ public class PickItem : MonoBehaviour
     {
         if (col.CompareTag("Regatado"))
         {
+            collider = null;
             telaResgate.SetActive(false);
         }
 
