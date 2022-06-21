@@ -22,6 +22,7 @@ public class PickItem : MonoBehaviour
     public GameObject telaResgate;
 
     public Collider collider;
+    
 
     void Start()
     {
@@ -41,7 +42,8 @@ public class PickItem : MonoBehaviour
         scoreDisplay.text = score.ToString();
         axeDisplay.text = axeCount.ToString();
         ropeDisplay.text = ropeCount.ToString();
-        aguaNeedDisplay.text = aguaNeed.ToString();        
+        aguaNeedDisplay.text = aguaNeed.ToString();
+        
         if (Input.GetKeyDown(KeyCode.E) && collider)
         {
             Destroy(collider.gameObject);
@@ -59,6 +61,8 @@ public class PickItem : MonoBehaviour
                 axeCount = axeCount - resgatado.machado;
             }
         }
+
+       
     }
 
     private void OnTriggerEnter(Collider col)
@@ -73,6 +77,19 @@ public class PickItem : MonoBehaviour
             ervaNeed = resgatado.erva;
             axeNeed = resgatado.machado;
             telaResgate.SetActive(true);
+
+            // desabilita text relacionado a agua
+            if (aguaNeed == 0)
+            {
+                aguaNeedDisplay.gameObject.SetActive(false);
+            }
+            else
+            {
+                if (aguaNeed > 0)
+                {
+                    aguaNeedDisplay.gameObject.SetActive(true);
+                }
+            }
 
         
         }
@@ -92,7 +109,7 @@ public class PickItem : MonoBehaviour
 
 
     }
-
+    
     private void OnTriggerExit(Collider col)
     {
         if (col.CompareTag("Regatado"))

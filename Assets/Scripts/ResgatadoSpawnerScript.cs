@@ -65,7 +65,7 @@ public class ResgatadoSpawnerScript : MonoBehaviour
         
         res.transform.SetParent(this.transform,false);
         aux = plane.GetComponent<VerticeCollector>().vertices;
-        res.transform.position = plane.transform.TransformPoint(aux[Random.Range(0,aux.Length-1)]) + new Vector3(0,0.5f,0);
+        res.transform.position = plane.transform.TransformPoint(aux[Random.Range(0,aux.Length-1)]) + new Vector3(0,0,0);
 
         return res;
     }
