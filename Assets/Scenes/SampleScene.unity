@@ -3905,7 +3905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToFinishDisplay: {fileID: 892877498}
-  timeToFinish: 600
+  timeToFinish: 300
   gameOver: {fileID: 1453691674}
 --- !u!1 &800218160
 GameObject:
@@ -5105,8 +5105,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.06218428, y: -0.7435696, z: 0.069837175, w: 0.6620877}
-  m_LocalPosition: {x: 4.069424, y: 2.08, z: 0.050773025}
+  m_LocalRotation: {x: 0.062227298, y: -0.74316156, z: 0.06979884, w: 0.66254574}
+  m_LocalPosition: {x: 4.069424, y: 1.446, z: 0.050773025}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7450,7 +7450,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 82e232c4b7118c044b006d312574bb11, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10042,7 +10042,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1760507313}
-  m_LocalRotation: {x: 0.062184278, y: -0.7435696, z: 0.06983718, w: 0.66208774}
+  m_LocalRotation: {x: 0.06222729, y: -0.74316156, z: 0.06979884, w: 0.66254574}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12228,32 +12228,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f83c06207830a1d438a3c585a5d5ba1e, type: 3}
   m_PrefabInstance: {fileID: 2026699125}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &2070729254
-BoxCollider2D:
+--- !u!65 &2070729254
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2070729252}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.15160197, y: 1.9870206}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_IsTrigger: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.6607627, y: 4.1279716}
-  m_EdgeRadius: 0
+  m_Size: {x: 1.6607627, y: 4.1279716, z: 1.3071264}
+  m_Center: {x: -0.15160197, y: 1.9870206, z: 0.14169824}
 --- !u!1001 &2072023124
 PrefabInstance:
   m_ObjectHideFlags: 0
