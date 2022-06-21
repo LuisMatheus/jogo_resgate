@@ -6,7 +6,7 @@ public class SpawnWater : MonoBehaviour
 {
       public GameObject water;
     private int qtdWater;
-    BoxCollider m;
+   
     private int pos = 0;
     Vector3[] positionArray = new [] {new Vector3(-0.7f, 1.075f , 1.72f),  
     new Vector3(-45.1f, 0.4899763f , 3.203064f), 
@@ -23,7 +23,7 @@ public class SpawnWater : MonoBehaviour
     void Start(){
          water.tag = "water";
         
-        m.size = new Vector3(0.2869842f, 0.296426f, 0.2717252f);
+        
 
       
        
