@@ -12,7 +12,7 @@ public class PickItem : MonoBehaviour
 
     public Text ervaDisplay;
 
-    public int score;
+    public int score = 0;
     public int axeCount;
     public int ropeCount;
     public int ervaCount;
@@ -47,7 +47,7 @@ public class PickItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreDisplay.text = score.ToString();
+        scoreDisplay.text = "Scores: " + score.ToString();
         axeDisplay.text = axeCount.ToString();
         ropeDisplay.text = ropeCount.ToString();
         ervaDisplay.text = ervaCount.ToString();
