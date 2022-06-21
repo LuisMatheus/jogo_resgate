@@ -48,32 +48,29 @@ public class PickItem : MonoBehaviour
         axeDisplay.text = axeCount.ToString();
         ropeDisplay.text = ropeCount.ToString();
 
-        ervaNeedDisplay.text = ervaNeed.ToString();
         ervaNeedDisplay.text = "Erva(s): " + ervaNeed.ToString();
         ropeNeedDisplay.text = "Corda(s): " + ropeNeed.ToString();
         axeNeedDisplay.text = "Machado(s): " + axeNeed.ToString();
         knifeNeedDisplay.text = "Faca(s): " + knifeNeed.ToString();
 
-        var resgatado = collider.gameObject.GetComponent<ResgatadoScript>();
-
-        if (Input.GetKeyDown(KeyCode.E) && collider && resgatado.knife <= knifeCount && resgatado.corda <= ropeCount && resgatado.erva <= ervaCount && resgatado.machado <= axeCount)
+        if (collider)
         {
-            //Destroy(collider.gameObject);
-            telaResgate.SetActive(false);
-            score = score + 1;
+            var resgatado = collider.gameObject.GetComponent<ResgatadoScript>();
+            if (Input.GetKeyDown(KeyCode.E) && resgatado.knife <= knifeCount && resgatado.corda <= ropeCount && resgatado.erva <= ervaCount && resgatado.machado <= axeCount)
+            {
 
+                //Destroy(collider.gameObject);
+                telaResgate.SetActive(false);
+                score = score + 1;
 
-            Debug.Log("knife " + resgatado.knife + " Corda " + resgatado.corda + " Erva " + resgatado.erva + " Machado " + resgatado.machado);
+                knifeCount = knifeCount - resgatado.knife;
+                ropeCount = ropeCount - resgatado.corda;
+                ervaCount = ervaCount - resgatado.erva;
+                axeCount = axeCount - resgatado.machado;
+                GameObject.Find("ResgatadoSpawner").GetComponent<ResgatadoSpawnerScript>().removerResgatado(resgatado.gameObject, true);
+            }
 
-
-            knifeCount = knifeCount - resgatado.knife;
-            ropeCount = ropeCount - resgatado.corda;
-            ervaCount = ervaCount - resgatado.erva;
-            axeCount = axeCount - resgatado.machado;
-            GameObject.Find("ResgatadoSpawner").GetComponent<ResgatadoSpawnerScript>().removerResgatado(resgatado.gameObject, true);
         }
-
-
     }
 
     private void OnTriggerEnter(Collider col)
@@ -135,10 +132,11 @@ public class PickItem : MonoBehaviour
 
     private void OnTriggerExit(Collider col)
     {
-        if (col.CompareTag("Regatado"))
+        if (col.CompareTag("Regatado") == true)
         {
             collider = null;
             telaResgate.SetActive(false);
+
         }
 
     }

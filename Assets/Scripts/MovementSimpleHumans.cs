@@ -22,11 +22,11 @@ public class MovementSimpleHumans : MonoBehaviour
     public Text axe;
     public Text rope;
     public Text drug;
-    
-    private int axeValue; 
+
+    private int axeValue;
     private int ropeValue;
     private int drugValue;
- 
+
     void Start()
     {
         // get component from object using the script
@@ -35,7 +35,7 @@ public class MovementSimpleHumans : MonoBehaviour
         _rb = this.GetComponent<Rigidbody>();
         _agent = this.GetComponent<NavMeshAgent>();
 
-        
+
 
     }
 
@@ -44,23 +44,23 @@ public class MovementSimpleHumans : MonoBehaviour
     {
         // motion = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         // rb.velocity = motion * _speed;
-        
+
         axeValue = int.Parse(axe.text);
         ropeValue = int.Parse(rope.text);
         drugValue = int.Parse(drug.text);
         // peso
         var weight = axeValue + ropeValue + drugValue;
-        
-        Debug.Log($"{weight}");
-        
+
+        // Debug.Log($"{weight}");
+
         // Rotate right and *-1, because Object has own axis
-        Vector3 verticalMovement = transform.right * (-1 * Input.GetAxis("Vertical")) ;
+        Vector3 verticalMovement = transform.right * (-1 * Input.GetAxis("Vertical"));
         //Vector3 horizontalMovement = transform.right * Input.GetAxis("Horizontal");
-        
+
         // float slerpTValue = Mathf.Abs(Input.GetAxis("Vertical") / Input.GetAxis("Horizontal"))/2;
         // Vector3 targetPosition = Vector3.Slerp(horizontalMovementation, verticalMovimentation, slerpTValue);
         // targetPosition.y = 0.0f;
-        
+
         if (Input.GetKey("left shift"))
         {
             if (_running)
@@ -73,16 +73,16 @@ public class MovementSimpleHumans : MonoBehaviour
                 _running = true;
                 _speed = 4;
             }
-            
+
         }
-        
+
         // Move using navMesh
         _agent.Move(verticalMovement * (_speed * Time.deltaTime));
-        
-        
+
+
         // Normal walk
         if ((Input.GetKey("w") || Input.GetKey("s")) && !_ducked)
-        { 
+        {
             _animator.SetInteger(setLegs, 1);
             _animator.SetInteger(setArms, 1);
         }
@@ -119,42 +119,42 @@ public class MovementSimpleHumans : MonoBehaviour
                 }
             }
         }
-        
+
         // Stop walking
         if (!Input.GetKey("s") && !Input.GetKey("w") && !_ducked)
         {
             _animator.SetInteger(setLegs, 0);
             _animator.SetInteger(setArms, 0);
         }
-        
+
         // Stop Running
         if (!_running && Input.GetKey("w"))
         {
             _animator.SetInteger(setLegs, 1);
             _animator.SetInteger(setArms, 1);
         }
-        
+
         // Rotate Left
         if (Input.GetKey("a"))
         {
             var rotate = transform.localRotation.eulerAngles.y;
-            transform.localRotation = Quaternion.Euler(new Vector3(0, rotate-1f, 0));
+            transform.localRotation = Quaternion.Euler(new Vector3(0, rotate - 1f, 0));
         }
-        
+
         // Rotate Right
         if (Input.GetKey("d"))
         {
             double rotate = transform.localRotation.eulerAngles.y;
-            transform.localRotation = Quaternion.Euler(new Vector3(0, (float) rotate+1f, 0));
+            transform.localRotation = Quaternion.Euler(new Vector3(0, (float)rotate + 1f, 0));
         }
-        
+
         // Pick-up
         if (Input.GetKey("e") && !Input.GetKey("w") && !Input.GetKey("s"))
         {
             _animator.SetInteger(setLegs, 9);
             _animator.SetInteger(setArms, 9);
         }
-        
+
         // Switch between ducked and no-ducked animations
         if (Input.GetKey("space"))
         {
@@ -171,23 +171,23 @@ public class MovementSimpleHumans : MonoBehaviour
                 _animator.SetInteger(setArms, 8);
             }
         }
-        
+
         // Walk while ducked
         if ((Input.GetKey("w") || Input.GetKey("s")) && _ducked && !_running)
         {
             _animator.SetInteger(setLegs, 6);
             _animator.SetInteger(setArms, 6);
         }
-        
+
         // Stop walking if ducked
         if ((!Input.GetKey("w") && !Input.GetKey("s")) && _ducked && !_running)
         {
             _animator.SetInteger(setLegs, 8);
             _animator.SetInteger(setArms, 8);
         }
-        
+
     }
-    
-    
-    
+
+
+
 }
