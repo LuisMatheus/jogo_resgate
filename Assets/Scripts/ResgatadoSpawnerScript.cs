@@ -13,47 +13,58 @@ public class ResgatadoSpawnerScript : MonoBehaviour
     public List<GameObject> quadrantes;
 
     public int quantidadeRegatados;
-    
-    private Dictionary<GameObject, List<GameObject>> resgatadoTracker = new Dictionary<GameObject, List<GameObject>>();
+
+    private Dictionary<GameObject, List<int>> resgatadoTracker = new Dictionary<GameObject, List<int>>();
 
     private Vector3[] aux;
 
     public int updateLevel = 4;
 
     public int offSetTempoVida = 1;
-    
-    private int resgatadosNum = 1;
-    
-    // Start is called before the first frame update
+
+    public  int resgatadosNum = 1;
+
+    private int idSeq = 0;
+
+    private int getNextSeq()
+    {
+        return idSeq++;
+    }
+
+// Start is called before the first frame update
     void Start()
     {
         foreach (GameObject element in quadrantes)
         {
-                resgatadoTracker.Add(element.gameObject, new List<GameObject>());        
+                resgatadoTracker.Add(element.gameObject, new List<int>());
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        for (int i = 0; i < resgatadoTracker.Count; i++)
+        var myEnum = resgatadoTracker.GetEnumerator();
+        while (myEnum.MoveNext())
         {
-            var item = resgatadoTracker.ElementAt(i);
-             if (item.Value.Count < quantidadeRegatados)
+            if (myEnum.Current.Value.Count < quantidadeRegatados)
             {
-                item.Value.Add(spawnResgatado(quadrantes[i]));
-            }      
+                myEnum.Current.Value.Add(spawnResgatado(myEnum.Current.Key));
+            }
+                
         }
-      
 
-        
     }
 
-    GameObject spawnResgatado(GameObject plane)
+    // ReSharper disable Unity.PerformanceAnalysis
+    int spawnResgatado(GameObject plane)
     {
-        GameObject res = GameObject.Instantiate(resgatado);
+        GameObject res = GameObject.Instantiate(resgatado, this.transform, false);
 
+        
+        //seta o id
+        var id = getNextSeq();
+        res.GetComponent<ResgatadoScript>().id = id;
+        
         //Seta os itens
         res.GetComponent<ResgatadoScript>().agua = quantidadeItensSpawn();
         res.GetComponent<ResgatadoScript>().machado = quantidadeItensSpawn();
@@ -61,36 +72,45 @@ public class ResgatadoSpawnerScript : MonoBehaviour
         res.GetComponent<ResgatadoScript>().corda = quantidadeItensSpawn();
         res.GetComponent<ResgatadoScript>().vida = vidaSpawn();
 
-        updateQuantidadeResgatados();
-        
-        res.transform.SetParent(this.transform,false);
+
         aux = plane.GetComponent<VerticeCollector>().vertices;
         res.transform.position = plane.transform.TransformPoint(aux[Random.Range(0,aux.Length-1)]) + new Vector3(0,0.5f,0);
 
-        return res;
+        updateQuantidadeResgatados();
+
+        return id;
     }
 
     private float vidaSpawn()
     {
-        return 90 / (resgatadosNum * offSetTempoVida);
+        return Random.Range(90 - (resgatadosNum * offSetTempoVida), 90);;
     }
 
     private void updateQuantidadeResgatados()
     {
-        var x = resgatadosNum % updateLevel;
-        quantidadeRegatados = x == 0 ? 1 : x;
+        if (resgatadosNum % updateLevel == 0)
+        {
+            quantidadeRegatados = resgatadosNum / updateLevel;
+        }
     }
 
-    public void removerResgatado(GameObject resgatado)
+    // ReSharper disable Unity.PerformanceAnalysis
+    public void removerResgatado(GameObject resgatado, bool aumentarContador)
     {
-        for (int i = 0; i < resgatadoTracker.Count; i++)
+        var myEnum = resgatadoTracker.GetEnumerator();
+        while (myEnum.MoveNext())
         {
-            if (resgatadoTracker[quadrantes[i]].Contains(resgatado))
+            if (myEnum.Current.Value.Contains(resgatado.GetComponent<ResgatadoScript>().id))
             {
-                resgatadosNum++;
-                resgatadoTracker[quadrantes[i]].Remove(resgatado);
+                myEnum.Current.Value.Remove(resgatado.GetComponent<ResgatadoScript>().id);
                 Destroy(resgatado);
+                if (aumentarContador)
+                {
+                    resgatadosNum++;    
+                }
             }
+            
+            
         }
     }
 

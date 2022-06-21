@@ -44,10 +44,11 @@ public class PickItem : MonoBehaviour
         aguaNeedDisplay.text = aguaNeed.ToString();        
         if (Input.GetKeyDown(KeyCode.E) && collider)
         {
-            Destroy(collider.gameObject);
+            //Destroy(collider.gameObject);
             telaResgate.SetActive(false);
             score = score + 1;
             var resgatado = collider.gameObject.GetComponent<ResgatadoScript>();
+            
 
             Debug.Log("Agua " + resgatado.agua + " Corda " + resgatado.corda + " Erva " + resgatado.erva + " Machado " + resgatado.machado);
 
@@ -57,6 +58,7 @@ public class PickItem : MonoBehaviour
                 ropeCount = ropeCount - resgatado.corda;
                 ervaCount = ervaCount - resgatado.erva;
                 axeCount = axeCount - resgatado.machado;
+                GameObject.Find("ResgatadoSpawner").GetComponent<ResgatadoSpawnerScript>().removerResgatado(resgatado.gameObject,true);
             }
         }
     }
