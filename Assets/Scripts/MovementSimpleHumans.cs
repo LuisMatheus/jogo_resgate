@@ -138,14 +138,14 @@ public class MovementSimpleHumans : MonoBehaviour
         if (Input.GetKey("a"))
         {
             var rotate = transform.localRotation.eulerAngles.y;
-            transform.localRotation = Quaternion.Euler(new Vector3(0, rotate - 1f, 0));
+            transform.localRotation = Quaternion.Euler(new Vector3(0, rotate - 2f, 0));
         }
 
         // Rotate Right
         if (Input.GetKey("d"))
         {
             double rotate = transform.localRotation.eulerAngles.y;
-            transform.localRotation = Quaternion.Euler(new Vector3(0, (float)rotate + 1f, 0));
+            transform.localRotation = Quaternion.Euler(new Vector3(0, (float)rotate + 2f, 0));
         }
 
         // Pick-up

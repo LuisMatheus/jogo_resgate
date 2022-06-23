@@ -17,6 +17,7 @@ public class Compass : MonoBehaviour
     public Marks any1;
     public Marks any2;
     public Marks any3;
+    public Marks any4;
 
     public void Start()
     {
@@ -50,7 +51,7 @@ public class Compass : MonoBehaviour
             float scale = 0f;
             if (distance < maxDistance)
             {
-                scale = 1f - (distance / maxDistance);
+                scale = 2f - (distance / maxDistance);
             }
 
             // command to modify the scale of Marks
